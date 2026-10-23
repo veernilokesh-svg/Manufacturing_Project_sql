@@ -1,0 +1,25 @@
+MANUFACTURING AND PRODUCTION MANAGEMENT SYSTEM
+Database: manufacturing_db
+Verified on: 22-10-2026
+
+1. Production Orders Verification
+
++----------+------------+------------+------------------+-------------------+--------------+
+| order_id | product_id | machine_id | planned_quantity | produced_quantity | order_status |
++----------+------------+------------+------------------+-------------------+--------------+
+|        1 |          1 |          1 |              100 |                80 | In Progress  |
+|        2 |          2 |          2 |               50 |                50 | Completed    |
+|        3 |          3 |          1 |              200 |               150 | In Progress  |
++----------+------------+------------+------------------+-------------------+--------------+
+3 rows in set (0.00 sec)
+
+2. Production Summary View Verification
+
++----------+-----------------+------------------+------------------+-------------------+------------+--------------+
+| order_id | product_name    | machine_name     | planned_quantity | produced_quantity | order_date | order_status |
++----------+-----------------+------------------+------------------+-------------------+------------+--------------+
+|        1 | Metal Bracket   | CNC Machine 01   |              100 |                80 | 2026-10-01 | In Progress  |
+|        2 | Aluminium Panel | Lathe Machine 01 |               50 |                50 | 2026-10-02 | Completed    |
+|        3 | Plastic Cover   | CNC Machine 01   |              200 |               150 | 2026-10-03 | In Progress  |
++----------+-----------------+------------------+------------------+-------------------+------------+--------------+
+3 rows in set (0.00 sec)

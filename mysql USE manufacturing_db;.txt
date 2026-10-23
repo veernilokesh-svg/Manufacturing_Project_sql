@@ -1,0 +1,1409 @@
+mysql> USE manufacturing_db;
+Database changed
+mysql>
+mysql> SELECT DATABASE();
++------------------+
+| DATABASE()       |
++------------------+
+| manufacturing_db |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW TABLES;
++----------------------------+
+| Tables_in_manufacturing_db |
++----------------------------+
+| machines                   |
+| material_usage             |
+| materials                  |
+| production_orders          |
+| production_summary         |
+| products                   |
+| quality_checks             |
+| suppliers                  |
++----------------------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Suppliers;
++-------------+-------------------------+---------------+------------+
+| supplier_id | supplier_name           | city          | phone      |
++-------------+-------------------------+---------------+------------+
+|           1 | Sri Industrial Supplies | Visakhapatnam | 9876543210 |
+|           2 | ABC Metals              | Hyderabad     | 9876501234 |
+|         113 | Sri Industrial Supplies | Visakhapatnam | 9876543210 |
+|         114 | ABC Metals              | Hyderabad     | 9876501234 |
+|         115 | Sri Industrial Supplies | Visakhapatnam | 9876543210 |
+|         116 | ABC Metals              | Hyderabad     | 9876501234 |
+|         117 | Sri Industrial Supplies | Visakhapatnam | 9876543210 |
+|         118 | ABC Metals              | Hyderabad     | 9876501234 |
+|         119 | Sri Industrial Supplies | Visakhapatnam | 9876543210 |
+|         120 | ABC Metals              | Hyderabad     | 9876501234 |
+|         121 | Sri Industrial Supplies | Visakhapatnam | 9876543210 |
+|         122 | ABC Metals              | Hyderabad     | 9876501234 |
+|         123 | Sri Industrial Supplies | Visakhapatnam | 9876543210 |
+|         124 | ABC Metals              | Hyderabad     | 9876501234 |
+|         125 | Sri Industrial Supplies | Visakhapatnam | 9876543210 |
+|         126 | ABC Metals              | Hyderabad     | 9876501234 |
+|         127 | Sri Industrial Supplies | Visakhapatnam | 9876543210 |
+|         128 | ABC Metals              | Hyderabad     | 9876501234 |
+|         129 | Sri Industrial Supplies | Visakhapatnam | 9876543210 |
+|         130 | ABC Metals              | Hyderabad     | 9876501234 |
+|         131 | Sri Industrial Supplies | Visakhapatnam | 9876543210 |
+|         132 | ABC Metals              | Hyderabad     | 9876501234 |
++-------------+-------------------------+---------------+------------+
+22 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Materials;
++-------------+------------------+------+----------------+-----------+-------------+
+| material_id | material_name    | unit | stock_quantity | unit_cost | supplier_id |
++-------------+------------------+------+----------------+-----------+-------------+
+|           1 | Steel            | Kg   |        1000.00 |     80.00 |           1 |
+|           2 | Aluminium        | Kg   |         500.00 |    200.00 |           2 |
+|           3 | Plastic Granules | Kg   |         300.00 |     60.00 |           1 |
+|         169 | Steel            | Kg   |        1000.00 |     80.00 |           1 |
+|         170 | Aluminium        | Kg   |         500.00 |    200.00 |           2 |
+|         171 | Plastic Granules | Kg   |         300.00 |     60.00 |           1 |
+|         172 | Steel            | Kg   |        1000.00 |     80.00 |           1 |
+|         173 | Aluminium        | Kg   |         500.00 |    200.00 |           2 |
+|         174 | Plastic Granules | Kg   |         300.00 |     60.00 |           1 |
+|         175 | Steel            | Kg   |        1000.00 |     80.00 |           1 |
+|         176 | Aluminium        | Kg   |         500.00 |    200.00 |           2 |
+|         177 | Plastic Granules | Kg   |         300.00 |     60.00 |           1 |
+|         178 | Steel            | Kg   |        1000.00 |     80.00 |           1 |
+|         179 | Aluminium        | Kg   |         500.00 |    200.00 |           2 |
+|         180 | Plastic Granules | Kg   |         300.00 |     60.00 |           1 |
+|         181 | Steel            | Kg   |        1000.00 |     80.00 |           1 |
+|         182 | Aluminium        | Kg   |         500.00 |    200.00 |           2 |
+|         183 | Plastic Granules | Kg   |         300.00 |     60.00 |           1 |
+|         184 | Steel            | Kg   |        1000.00 |     80.00 |           1 |
+|         185 | Aluminium        | Kg   |         500.00 |    200.00 |           2 |
+|         186 | Plastic Granules | Kg   |         300.00 |     60.00 |           1 |
+|         187 | Steel            | Kg   |        1000.00 |     80.00 |           1 |
+|         188 | Aluminium        | Kg   |         500.00 |    200.00 |           2 |
+|         189 | Plastic Granules | Kg   |         300.00 |     60.00 |           1 |
+|         190 | Steel            | Kg   |        1000.00 |     80.00 |           1 |
+|         191 | Aluminium        | Kg   |         500.00 |    200.00 |           2 |
+|         192 | Plastic Granules | Kg   |         300.00 |     60.00 |           1 |
+|         193 | Steel            | Kg   |        1000.00 |     80.00 |           1 |
+|         194 | Aluminium        | Kg   |         500.00 |    200.00 |           2 |
+|         195 | Plastic Granules | Kg   |         300.00 |     60.00 |           1 |
+|         196 | Steel            | Kg   |        1000.00 |     80.00 |           1 |
+|         197 | Aluminium        | Kg   |         500.00 |    200.00 |           2 |
+|         198 | Plastic Granules | Kg   |         300.00 |     60.00 |           1 |
++-------------+------------------+------+----------------+-----------+-------------+
+33 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Products;
++------------+-----------------+------------+---------------+
+| product_id | product_name    | category   | selling_price |
++------------+-----------------+------------+---------------+
+|          1 | Metal Bracket   | Mechanical |        250.00 |
+|          2 | Aluminium Panel | Mechanical |        800.00 |
+|          3 | Plastic Cover   | Components |        120.00 |
+|        169 | Metal Bracket   | Mechanical |        250.00 |
+|        170 | Aluminium Panel | Mechanical |        800.00 |
+|        171 | Plastic Cover   | Components |        120.00 |
+|        172 | Metal Bracket   | Mechanical |        250.00 |
+|        173 | Aluminium Panel | Mechanical |        800.00 |
+|        174 | Plastic Cover   | Components |        120.00 |
+|        175 | Metal Bracket   | Mechanical |        250.00 |
+|        176 | Aluminium Panel | Mechanical |        800.00 |
+|        177 | Plastic Cover   | Components |        120.00 |
+|        178 | Metal Bracket   | Mechanical |        250.00 |
+|        179 | Aluminium Panel | Mechanical |        800.00 |
+|        180 | Plastic Cover   | Components |        120.00 |
+|        181 | Metal Bracket   | Mechanical |        250.00 |
+|        182 | Aluminium Panel | Mechanical |        800.00 |
+|        183 | Plastic Cover   | Components |        120.00 |
+|        184 | Metal Bracket   | Mechanical |        250.00 |
+|        185 | Aluminium Panel | Mechanical |        800.00 |
+|        186 | Plastic Cover   | Components |        120.00 |
+|        187 | Metal Bracket   | Mechanical |        250.00 |
+|        188 | Aluminium Panel | Mechanical |        800.00 |
+|        189 | Plastic Cover   | Components |        120.00 |
+|        190 | Metal Bracket   | Mechanical |        250.00 |
+|        191 | Aluminium Panel | Mechanical |        800.00 |
+|        192 | Plastic Cover   | Components |        120.00 |
+|        193 | Metal Bracket   | Mechanical |        250.00 |
+|        194 | Aluminium Panel | Mechanical |        800.00 |
+|        195 | Plastic Cover   | Components |        120.00 |
+|        196 | Metal Bracket   | Mechanical |        250.00 |
+|        197 | Aluminium Panel | Mechanical |        800.00 |
+|        198 | Plastic Cover   | Components |        120.00 |
++------------+-----------------+------------+---------------+
+33 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Machines;
++------------+--------------------+--------------+----------------+
+| machine_id | machine_name       | machine_type | machine_status |
++------------+--------------------+--------------+----------------+
+|          1 | CNC Machine 01     | CNC          | Available      |
+|          2 | Lathe Machine 01   | Lathe        | Available      |
+|          3 | Milling Machine 01 | Milling      | Maintenance    |
+|        178 | CNC Machine 01     | CNC          | Available      |
+|        179 | Lathe Machine 01   | Lathe        | Available      |
+|        180 | Milling Machine 01 | Milling      | Maintenance    |
+|        181 | CNC Machine 01     | CNC          | Available      |
+|        182 | Lathe Machine 01   | Lathe        | Available      |
+|        183 | Milling Machine 01 | Milling      | Maintenance    |
+|        184 | CNC Machine 01     | CNC          | Available      |
+|        185 | Lathe Machine 01   | Lathe        | Available      |
+|        186 | Milling Machine 01 | Milling      | Maintenance    |
+|        187 | CNC Machine 01     | CNC          | Available      |
+|        188 | Lathe Machine 01   | Lathe        | Available      |
+|        189 | Milling Machine 01 | Milling      | Maintenance    |
+|        190 | CNC Machine 01     | CNC          | Available      |
+|        191 | Lathe Machine 01   | Lathe        | Available      |
+|        192 | Milling Machine 01 | Milling      | Maintenance    |
+|        193 | CNC Machine 01     | CNC          | Available      |
+|        194 | Lathe Machine 01   | Lathe        | Available      |
+|        195 | Milling Machine 01 | Milling      | Maintenance    |
+|        196 | CNC Machine 01     | CNC          | Available      |
+|        197 | Lathe Machine 01   | Lathe        | Available      |
+|        198 | Milling Machine 01 | Milling      | Maintenance    |
++------------+--------------------+--------------+----------------+
+24 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Production_Orders;
++----------+------------+------------+------------------+-------------------+------------+--------------+
+| order_id | product_id | machine_id | planned_quantity | produced_quantity | order_date | order_status |
++----------+------------+------------+------------------+-------------------+------------+--------------+
+|        1 |          1 |          1 |              100 |                80 | 2026-10-01 | In Progress  |
+|        2 |          2 |          2 |               50 |                50 | 2026-10-02 | Completed    |
+|        3 |          3 |          1 |              200 |               150 | 2026-10-03 | In Progress  |
+|      226 |          1 |          1 |              100 |                 0 | 2026-10-15 | Planned      |
+|      234 |          1 |          1 |              120 |                 0 | 2026-10-21 | Planned      |
++----------+------------+------------+------------------+-------------------+------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Material_Usage;
++----------+----------+-------------+---------------+
+| usage_id | order_id | material_id | quantity_used |
++----------+----------+-------------+---------------+
+|        1 |        1 |           1 |        200.00 |
+|        2 |        2 |           2 |        100.00 |
+|        3 |        3 |           3 |         75.00 |
+|      139 |        1 |           1 |        200.00 |
+|      140 |        2 |           2 |        100.00 |
+|      141 |        3 |           3 |         75.00 |
++----------+----------+-------------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Quality_Checks;
++----------+----------+--------------------+--------------------+-----------------+--------+
+| check_id | order_id | inspected_quantity | defective_quantity | inspection_date | result |
++----------+----------+--------------------+--------------------+-----------------+--------+
+|        1 |        1 |                 80 |                  3 | 2026-10-04      | Passed |
+|        2 |        2 |                 50 |                  0 | 2026-10-04      | Passed |
+|        3 |        3 |                150 |                  8 | 2026-10-05      | Review |
+|      142 |        1 |                 80 |                  3 | 2026-10-04      | Passed |
+|      143 |        2 |                 50 |                  0 | 2026-10-04      | Passed |
+|      144 |        3 |                150 |                  8 | 2026-10-05      | Review |
++----------+----------+--------------------+--------------------+-----------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Suppliers_backup2 AS SELECT * FROM Suppliers;
+Query OK, 22 rows affected (0.04 sec)
+Records: 22  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Materials_backup2 AS SELECT * FROM Materials;
+Query OK, 33 rows affected (0.02 sec)
+Records: 33  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Products_backup2 AS SELECT * FROM Products;
+Query OK, 33 rows affected (0.01 sec)
+Records: 33  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Machines_backup2 AS SELECT * FROM Machines;
+Query OK, 24 rows affected (0.01 sec)
+Records: 24  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Production_Orders_backup2 AS SELECT * FROM Production_Orders;
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Material_Usage_backup2 AS SELECT * FROM Material_Usage;
+Query OK, 6 rows affected (0.01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Quality_Checks_backup2 AS SELECT * FROM Quality_Checks;
+Query OK, 6 rows affected (0.03 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> USE manufacturing_db;
+Database changed
+mysql>
+mysql> DELETE FROM Material_Usage
+    -> WHERE usage_id IN (139, 140, 141);
+Query OK, 3 rows affected (0.02 sec)
+
+mysql>
+mysql> DELETE FROM Quality_Checks
+    -> WHERE check_id IN (142, 143, 144);
+Query OK, 3 rows affected (0.01 sec)
+
+mysql> DELETE FROM Materials
+    -> WHERE material_id BETWEEN 169 AND 198;
+Query OK, 30 rows affected (0.02 sec)
+
+mysql>
+mysql> DELETE FROM Products
+    -> WHERE product_id BETWEEN 169 AND 198;
+Query OK, 30 rows affected (0.00 sec)
+
+mysql>
+mysql> DELETE FROM Machines
+    -> WHERE machine_id BETWEEN 178 AND 198;
+Query OK, 21 rows affected (0.00 sec)
+
+mysql>
+mysql> DELETE FROM Suppliers
+    -> WHERE supplier_id BETWEEN 113 AND 132;
+Query OK, 20 rows affected (0.02 sec)
+
+mysql> DELETE FROM production_orders
+    -> WHERE product_id BETWEEN 226 AND 234;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT * FROM Suppliers;
++-------------+-------------------------+---------------+------------+
+| supplier_id | supplier_name           | city          | phone      |
++-------------+-------------------------+---------------+------------+
+|           1 | Sri Industrial Supplies | Visakhapatnam | 9876543210 |
+|           2 | ABC Metals              | Hyderabad     | 9876501234 |
++-------------+-------------------------+---------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Materials;
++-------------+------------------+------+----------------+-----------+-------------+
+| material_id | material_name    | unit | stock_quantity | unit_cost | supplier_id |
++-------------+------------------+------+----------------+-----------+-------------+
+|           1 | Steel            | Kg   |        1000.00 |     80.00 |           1 |
+|           2 | Aluminium        | Kg   |         500.00 |    200.00 |           2 |
+|           3 | Plastic Granules | Kg   |         300.00 |     60.00 |           1 |
++-------------+------------------+------+----------------+-----------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Products;
++------------+-----------------+------------+---------------+
+| product_id | product_name    | category   | selling_price |
++------------+-----------------+------------+---------------+
+|          1 | Metal Bracket   | Mechanical |        250.00 |
+|          2 | Aluminium Panel | Mechanical |        800.00 |
+|          3 | Plastic Cover   | Components |        120.00 |
++------------+-----------------+------------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Machines;
++------------+--------------------+--------------+----------------+
+| machine_id | machine_name       | machine_type | machine_status |
++------------+--------------------+--------------+----------------+
+|          1 | CNC Machine 01     | CNC          | Available      |
+|          2 | Lathe Machine 01   | Lathe        | Available      |
+|          3 | Milling Machine 01 | Milling      | Maintenance    |
++------------+--------------------+--------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Production_Orders;
++----------+------------+------------+------------------+-------------------+------------+--------------+
+| order_id | product_id | machine_id | planned_quantity | produced_quantity | order_date | order_status |
++----------+------------+------------+------------------+-------------------+------------+--------------+
+|        1 |          1 |          1 |              100 |                80 | 2026-10-01 | In Progress  |
+|        2 |          2 |          2 |               50 |                50 | 2026-10-02 | Completed    |
+|        3 |          3 |          1 |              200 |               150 | 2026-10-03 | In Progress  |
+|      226 |          1 |          1 |              100 |                 0 | 2026-10-15 | Planned      |
+|      234 |          1 |          1 |              120 |                 0 | 2026-10-21 | Planned      |
++----------+------------+------------+------------------+-------------------+------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Material_Usage;
++----------+----------+-------------+---------------+
+| usage_id | order_id | material_id | quantity_used |
++----------+----------+-------------+---------------+
+|        1 |        1 |           1 |        200.00 |
+|        2 |        2 |           2 |        100.00 |
+|        3 |        3 |           3 |         75.00 |
++----------+----------+-------------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> DELETE FROM production_orders
+    -> WHERE supplier_id < 3;
+ERROR 1054 (42S22): Unknown column 'supplier_id' in 'where clause'
+mysql> DELETE FROM production_orders
+    -> WHERE product_id < 3;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`manufacturing_db`.`material_usage`, CONSTRAINT `material_usage_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `production_orders` (`order_id`))
+mysql> USE manufacturing_db;
+Database changed
+mysql>
+mysql> DELETE FROM Production_Orders
+    -> WHERE order_id = 226;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM Production_Orders;
++----------+------------+------------+------------------+-------------------+------------+--------------+
+| order_id | product_id | machine_id | planned_quantity | produced_quantity | order_date | order_status |
++----------+------------+------------+------------------+-------------------+------------+--------------+
+|        1 |          1 |          1 |              100 |                80 | 2026-10-01 | In Progress  |
+|        2 |          2 |          2 |               50 |                50 | 2026-10-02 | Completed    |
+|        3 |          3 |          1 |              200 |               150 | 2026-10-03 | In Progress  |
+|      234 |          1 |          1 |              120 |                 0 | 2026-10-21 | Planned      |
++----------+------------+------------+------------------+-------------------+------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> DELETE FROM production_orders
+    -> WHERE order_id = 234;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM Production_Orders;
++----------+------------+------------+------------------+-------------------+------------+--------------+
+| order_id | product_id | machine_id | planned_quantity | produced_quantity | order_date | order_status |
++----------+------------+------------+------------------+-------------------+------------+--------------+
+|        1 |          1 |          1 |              100 |                80 | 2026-10-01 | In Progress  |
+|        2 |          2 |          2 |               50 |                50 | 2026-10-02 | Completed    |
+|        3 |          3 |          1 |              200 |               150 | 2026-10-03 | In Progress  |
++----------+------------+------------+------------------+-------------------+------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE Suppliers
+    -> ADD CONSTRAINT uq_supplier_details
+    -> UNIQUE (supplier_name, city, phone);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE Materials
+    -> ADD CONSTRAINT uq_material_supplier
+    -> UNIQUE (material_name, supplier_id);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE Products
+    -> ADD CONSTRAINT uq_product_name
+    -> UNIQUE (product_name);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE Machines
+    -> ADD CONSTRAINT uq_machine_name
+    -> UNIQUE (machine_name);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE Production_Orders
+    -> ADD CONSTRAINT uq_product_machine_date
+    -> UNIQUE (product_id, machine_id, order_date);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE Material_Usage
+    -> ADD CONSTRAINT uq_order_material
+    -> UNIQUE (order_id, material_id);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE Quality_Checks
+    -> ADD CONSTRAINT uq_quality_order
+    -> UNIQUE (order_id);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SHOW CREATE TABLE Suppliers;
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                                                                                                                                                     |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Suppliers | CREATE TABLE `suppliers` (
+  `supplier_id` int NOT NULL AUTO_INCREMENT,
+  `supplier_name` varchar(100) NOT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`supplier_id`),
+  UNIQUE KEY `uq_supplier_details` (`supplier_name`,`city`,`phone`)
+) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> SHOW CREATE TABLE Materials;
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Materials | CREATE TABLE `materials` (
+  `material_id` int NOT NULL AUTO_INCREMENT,
+  `material_name` varchar(100) NOT NULL,
+  `unit` varchar(20) DEFAULT NULL,
+  `stock_quantity` decimal(10,2) DEFAULT '0.00',
+  `unit_cost` decimal(10,2) NOT NULL,
+  `supplier_id` int DEFAULT NULL,
+  PRIMARY KEY (`material_id`),
+  UNIQUE KEY `uq_material_supplier` (`material_name`,`supplier_id`),
+  KEY `supplier_id` (`supplier_id`),
+  CONSTRAINT `materials_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`supplier_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW CREATE TABLE Products;
++----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table    | Create Table                                                                                                                                                                                                                                                                                                                                                           |
++----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Products | CREATE TABLE `products` (
+  `product_id` int NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(100) NOT NULL,
+  `category` varchar(50) DEFAULT NULL,
+  `selling_price` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`product_id`),
+  UNIQUE KEY `uq_product_name` (`product_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW CREATE TABLE Machines;
++----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table    | Create Table                                                                                                                                                                                                                                                                                                                                                                     |
++----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Machines | CREATE TABLE `machines` (
+  `machine_id` int NOT NULL AUTO_INCREMENT,
+  `machine_name` varchar(100) NOT NULL,
+  `machine_type` varchar(50) DEFAULT NULL,
+  `machine_status` varchar(30) DEFAULT 'Available',
+  PRIMARY KEY (`machine_id`),
+  UNIQUE KEY `uq_machine_name` (`machine_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW CREATE TABLE Production_Orders;
++-------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table             | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
++-------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Production_Orders | CREATE TABLE `production_orders` (
+  `order_id` int NOT NULL AUTO_INCREMENT,
+  `product_id` int NOT NULL,
+  `machine_id` int DEFAULT NULL,
+  `planned_quantity` int NOT NULL,
+  `produced_quantity` int DEFAULT '0',
+  `order_date` date DEFAULT NULL,
+  `order_status` varchar(30) DEFAULT 'Planned',
+  PRIMARY KEY (`order_id`),
+  UNIQUE KEY `uq_production_order` (`product_id`,`machine_id`,`planned_quantity`,`order_date`,`order_status`),
+  UNIQUE KEY `uq_product_machine_date` (`product_id`,`machine_id`,`order_date`),
+  KEY `machine_id` (`machine_id`),
+  CONSTRAINT `production_orders_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
+  CONSTRAINT `production_orders_ibfk_2` FOREIGN KEY (`machine_id`) REFERENCES `machines` (`machine_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=241 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW CREATE TABLE Material_Usage;
++----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table          | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
++----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Material_Usage | CREATE TABLE `material_usage` (
+  `usage_id` int NOT NULL AUTO_INCREMENT,
+  `order_id` int NOT NULL,
+  `material_id` int NOT NULL,
+  `quantity_used` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`usage_id`),
+  UNIQUE KEY `uq_order_material` (`order_id`,`material_id`),
+  KEY `material_id` (`material_id`),
+  CONSTRAINT `material_usage_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `production_orders` (`order_id`),
+  CONSTRAINT `material_usage_ibfk_2` FOREIGN KEY (`material_id`) REFERENCES `materials` (`material_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW CREATE TABLE Quality_Checks;
++----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table          | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
++----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Quality_Checks | CREATE TABLE `quality_checks` (
+  `check_id` int NOT NULL AUTO_INCREMENT,
+  `order_id` int NOT NULL,
+  `inspected_quantity` int NOT NULL,
+  `defective_quantity` int DEFAULT '0',
+  `inspection_date` date DEFAULT NULL,
+  `result` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`check_id`),
+  UNIQUE KEY `uq_quality_order` (`order_id`),
+  CONSTRAINT `quality_checks_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `production_orders` (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM Suppliers;
++-------------+-------------------------+---------------+------------+
+| supplier_id | supplier_name           | city          | phone      |
++-------------+-------------------------+---------------+------------+
+|           2 | ABC Metals              | Hyderabad     | 9876501234 |
+|           1 | Sri Industrial Supplies | Visakhapatnam | 9876543210 |
++-------------+-------------------------+---------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Materials;
++-------------+------------------+------+----------------+-----------+-------------+
+| material_id | material_name    | unit | stock_quantity | unit_cost | supplier_id |
++-------------+------------------+------+----------------+-----------+-------------+
+|           1 | Steel            | Kg   |        1000.00 |     80.00 |           1 |
+|           2 | Aluminium        | Kg   |         500.00 |    200.00 |           2 |
+|           3 | Plastic Granules | Kg   |         300.00 |     60.00 |           1 |
++-------------+------------------+------+----------------+-----------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Products;
++------------+-----------------+------------+---------------+
+| product_id | product_name    | category   | selling_price |
++------------+-----------------+------------+---------------+
+|          1 | Metal Bracket   | Mechanical |        250.00 |
+|          2 | Aluminium Panel | Mechanical |        800.00 |
+|          3 | Plastic Cover   | Components |        120.00 |
++------------+-----------------+------------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Machines;
++------------+--------------------+--------------+----------------+
+| machine_id | machine_name       | machine_type | machine_status |
++------------+--------------------+--------------+----------------+
+|          1 | CNC Machine 01     | CNC          | Available      |
+|          2 | Lathe Machine 01   | Lathe        | Available      |
+|          3 | Milling Machine 01 | Milling      | Maintenance    |
++------------+--------------------+--------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Production_Orders;
++----------+------------+------------+------------------+-------------------+------------+--------------+
+| order_id | product_id | machine_id | planned_quantity | produced_quantity | order_date | order_status |
++----------+------------+------------+------------------+-------------------+------------+--------------+
+|        1 |          1 |          1 |              100 |                80 | 2026-10-01 | In Progress  |
+|        2 |          2 |          2 |               50 |                50 | 2026-10-02 | Completed    |
+|        3 |          3 |          1 |              200 |               150 | 2026-10-03 | In Progress  |
++----------+------------+------------+------------------+-------------------+------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Material_Usage;
++----------+----------+-------------+---------------+
+| usage_id | order_id | material_id | quantity_used |
++----------+----------+-------------+---------------+
+|        1 |        1 |           1 |        200.00 |
+|        2 |        2 |           2 |        100.00 |
+|        3 |        3 |           3 |         75.00 |
++----------+----------+-------------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Quality_Checks;
++----------+----------+--------------------+--------------------+-----------------+--------+
+| check_id | order_id | inspected_quantity | defective_quantity | inspection_date | result |
++----------+----------+--------------------+--------------------+-----------------+--------+
+|        1 |        1 |                 80 |                  3 | 2026-10-04      | Passed |
+|        2 |        2 |                 50 |                  0 | 2026-10-04      | Passed |
+|        3 |        3 |                150 |                  8 | 2026-10-05      | Review |
++----------+----------+--------------------+--------------------+-----------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SHOW INDEX FROM Suppliers;
++-----------+------------+---------------------+--------------+---------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table     | Non_unique | Key_name            | Seq_in_index | Column_name   | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++-----------+------------+---------------------+--------------+---------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| suppliers |          0 | PRIMARY             |            1 | supplier_id   | A         |          15 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| suppliers |          0 | uq_supplier_details |            1 | supplier_name | A         |           2 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| suppliers |          0 | uq_supplier_details |            2 | city          | A         |           2 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
+| suppliers |          0 | uq_supplier_details |            3 | phone         | A         |           2 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
++-----------+------------+---------------------+--------------+---------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+4 rows in set (0.02 sec)
+
+mysql> SHOW INDEX FROM Materials;
++-----------+------------+----------------------+--------------+---------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table     | Non_unique | Key_name             | Seq_in_index | Column_name   | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++-----------+------------+----------------------+--------------+---------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| materials |          0 | PRIMARY              |            1 | material_id   | A         |          22 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| materials |          0 | uq_material_supplier |            1 | material_name | A         |           3 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| materials |          0 | uq_material_supplier |            2 | supplier_id   | A         |           3 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
+| materials |          1 | supplier_id          |            1 | supplier_id   | A         |           2 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
++-----------+------------+----------------------+--------------+---------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> SHOW INDEX FROM Products;
++----------+------------+-----------------+--------------+--------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table    | Non_unique | Key_name        | Seq_in_index | Column_name  | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++----------+------------+-----------------+--------------+--------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| products |          0 | PRIMARY         |            1 | product_id   | A         |          22 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| products |          0 | uq_product_name |            1 | product_name | A         |           3 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
++----------+------------+-----------------+--------------+--------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql> SHOW INDEX FROM Machines;
++----------+------------+-----------------+--------------+--------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table    | Non_unique | Key_name        | Seq_in_index | Column_name  | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++----------+------------+-----------------+--------------+--------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| machines |          0 | PRIMARY         |            1 | machine_id   | A         |           6 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| machines |          0 | uq_machine_name |            1 | machine_name | A         |           3 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
++----------+------------+-----------------+--------------+--------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql> SHOW INDEX FROM Production_Orders;
++-------------------+------------+-------------------------+--------------+------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table             | Non_unique | Key_name                | Seq_in_index | Column_name      | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++-------------------+------------+-------------------------+--------------+------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| production_orders |          0 | PRIMARY                 |            1 | order_id         | A         |           3 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| production_orders |          0 | uq_production_order     |            1 | product_id       | A         |           3 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| production_orders |          0 | uq_production_order     |            2 | machine_id       | A         |           3 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
+| production_orders |          0 | uq_production_order     |            3 | planned_quantity | A         |           3 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| production_orders |          0 | uq_production_order     |            4 | order_date       | A         |           3 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
+| production_orders |          0 | uq_production_order     |            5 | order_status     | A         |           3 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
+| production_orders |          0 | uq_product_machine_date |            1 | product_id       | A         |           3 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| production_orders |          0 | uq_product_machine_date |            2 | machine_id       | A         |           3 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
+| production_orders |          0 | uq_product_machine_date |            3 | order_date       | A         |           3 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
+| production_orders |          1 | machine_id              |            1 | machine_id       | A         |           2 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
++-------------------+------------+-------------------------+--------------+------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+10 rows in set (0.00 sec)
+
+mysql> SHOW INDEX FROM Material_Usage;
++----------------+------------+-------------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table          | Non_unique | Key_name          | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++----------------+------------+-------------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| material_usage |          0 | PRIMARY           |            1 | usage_id    | A         |           3 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| material_usage |          0 | uq_order_material |            1 | order_id    | A         |           3 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| material_usage |          0 | uq_order_material |            2 | material_id | A         |           3 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| material_usage |          1 | material_id       |            1 | material_id | A         |           3 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
++----------------+------------+-------------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> SHOW INDEX FROM Quality_Checks;
++----------------+------------+------------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table          | Non_unique | Key_name         | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++----------------+------------+------------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| quality_checks |          0 | PRIMARY          |            1 | check_id    | A         |           3 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| quality_checks |          0 | uq_quality_order |            1 | order_id    | A         |           3 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
++----------------+------------+------------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+2 rows in set (0.02 sec)
+
+mysql> USE manufacturing_db;
+Database changed
+mysql>
+mysql> SELECT * FROM Products;
++------------+-----------------+------------+---------------+
+| product_id | product_name    | category   | selling_price |
++------------+-----------------+------------+---------------+
+|          1 | Metal Bracket   | Mechanical |        250.00 |
+|          2 | Aluminium Panel | Mechanical |        800.00 |
+|          3 | Plastic Cover   | Components |        120.00 |
++------------+-----------------+------------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Production_Orders;
++----------+------------+------------+------------------+-------------------+------------+--------------+
+| order_id | product_id | machine_id | planned_quantity | produced_quantity | order_date | order_status |
++----------+------------+------------+------------------+-------------------+------------+--------------+
+|        1 |          1 |          1 |              100 |                80 | 2026-10-01 | In Progress  |
+|        2 |          2 |          2 |               50 |                50 | 2026-10-02 | Completed    |
+|        3 |          3 |          1 |              200 |               150 | 2026-10-03 | In Progress  |
++----------+------------+------------+------------------+-------------------+------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT
+    ->     p.product_name,
+    ->     po.planned_quantity,
+    ->     po.produced_quantity,
+    ->     po.order_date,
+    ->     po.order_status
+    -> FROM Products p
+    -> INNER JOIN Production_Orders po
+    ->     ON p.product_id = po.product_id;
++-----------------+------------------+-------------------+------------+--------------+
+| product_name    | planned_quantity | produced_quantity | order_date | order_status |
++-----------------+------------------+-------------------+------------+--------------+
+| Aluminium Panel |               50 |                50 | 2026-10-02 | Completed    |
+| Metal Bracket   |              100 |                80 | 2026-10-01 | In Progress  |
+| Plastic Cover   |              200 |               150 | 2026-10-03 | In Progress  |
++-----------------+------------------+-------------------+------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT
+    ->     p.product_name,
+    ->     po.order_id,
+    ->     po.planned_quantity,
+    ->     po.produced_quantity,
+    ->     po.order_status
+    -> FROM Products p
+    -> LEFT JOIN Production_Orders po
+    ->     ON p.product_id = po.product_id;
++-----------------+----------+------------------+-------------------+--------------+
+| product_name    | order_id | planned_quantity | produced_quantity | order_status |
++-----------------+----------+------------------+-------------------+--------------+
+| Aluminium Panel |        2 |               50 |                50 | Completed    |
+| Metal Bracket   |        1 |              100 |                80 | In Progress  |
+| Plastic Cover   |        3 |              200 |               150 | In Progress  |
++-----------------+----------+------------------+-------------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT
+    ->     p.product_name,
+    ->     po.order_id,
+    ->     po.planned_quantity,
+    ->     po.produced_quantity,
+    ->     po.order_status
+    -> FROM Products p
+    -> RIGHT JOIN Production_Orders po
+    ->     ON p.product_id = po.product_id;
++-----------------+----------+------------------+-------------------+--------------+
+| product_name    | order_id | planned_quantity | produced_quantity | order_status |
++-----------------+----------+------------------+-------------------+--------------+
+| Metal Bracket   |        1 |              100 |                80 | In Progress  |
+| Aluminium Panel |        2 |               50 |                50 | Completed    |
+| Plastic Cover   |        3 |              200 |               150 | In Progress  |
++-----------------+----------+------------------+-------------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT
+    ->     po.order_id,
+    ->     p.product_name,
+    ->     m.machine_name,
+    ->     po.planned_quantity,
+    ->     po.produced_quantity,
+    ->     po.order_date,
+    ->     po.order_status
+    -> FROM Production_Orders po
+    -> INNER JOIN Products p
+    ->     ON po.product_id = p.product_id
+    -> INNER JOIN Machines m
+    ->     ON po.machine_id = m.machine_id;
++----------+-----------------+------------------+------------------+-------------------+------------+--------------+
+| order_id | product_name    | machine_name     | planned_quantity | produced_quantity | order_date | order_status |
++----------+-----------------+------------------+------------------+-------------------+------------+--------------+
+|        1 | Metal Bracket   | CNC Machine 01   |              100 |                80 | 2026-10-01 | In Progress  |
+|        2 | Aluminium Panel | Lathe Machine 01 |               50 |                50 | 2026-10-02 | Completed    |
+|        3 | Plastic Cover   | CNC Machine 01   |              200 |               150 | 2026-10-03 | In Progress  |
++----------+-----------------+------------------+------------------+-------------------+------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(*) AS total_orders
+    -> FROM Production_Orders;
++--------------+
+| total_orders |
++--------------+
+|            3 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SUM(planned_quantity) AS total_planned
+    -> FROM Production_Orders;
++---------------+
+| total_planned |
++---------------+
+|           350 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AVG(produced_quantity) AS average_produced
+    -> FROM Production_Orders;
++------------------+
+| average_produced |
++------------------+
+|          93.3333 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT
+    ->     MAX(planned_quantity) AS highest_quantity,
+    ->     MIN(planned_quantity) AS lowest_quantity
+    -> FROM Production_Orders;
++------------------+-----------------+
+| highest_quantity | lowest_quantity |
++------------------+-----------------+
+|              200 |              50 |
++------------------+-----------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT
+    ->     p.product_name,
+    ->     COUNT(po.order_id) AS total_orders
+    -> FROM Products p
+    -> INNER JOIN Production_Orders po
+    ->     ON p.product_id = po.product_id
+    -> GROUP BY p.product_name;
++-----------------+--------------+
+| product_name    | total_orders |
++-----------------+--------------+
+| Aluminium Panel |            1 |
+| Metal Bracket   |            1 |
+| Plastic Cover   |            1 |
++-----------------+--------------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT
+    ->     p.product_name,
+    ->     SUM(po.produced_quantity) AS total_produced
+    -> FROM Products p
+    -> INNER JOIN Production_Orders po
+    ->     ON p.product_id = po.product_id
+    -> GROUP BY p.product_name
+    -> HAVING SUM(po.produced_quantity) > 100;
++---------------+----------------+
+| product_name  | total_produced |
++---------------+----------------+
+| Plastic Cover |            150 |
++---------------+----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT order_id, planned_quantity
+    -> FROM Production_Orders
+    -> WHERE planned_quantity > (
+    ->     SELECT AVG(planned_quantity)
+    ->     FROM Production_Orders
+    -> );
++----------+------------------+
+| order_id | planned_quantity |
++----------+------------------+
+|        3 |              200 |
++----------+------------------+
+1 row in set (0.00 sec)
+
+mysql> CREATE VIEW production_summary AS
+    -> SELECT
+    ->     po.order_id,
+    ->     p.product_name,
+    ->     m.machine_name,
+    ->     po.planned_quantity,
+    ->     po.produced_quantity,
+    ->     po.order_date,
+    ->     po.order_status
+    -> FROM Production_Orders po
+    -> INNER JOIN Products p
+    ->     ON po.product_id = p.product_id
+    -> INNER JOIN Machines m
+    ->     ON po.machine_id = m.machine_id;
+ERROR 1050 (42S01): Table 'production_summary' already exists
+mysql> DROP TABLE production_summary;
+ERROR 1051 (42S02): Unknown table 'manufacturing_db.production_summary'
+mysql> DROP TABLE production_summary
+    -> ;
+ERROR 1051 (42S02): Unknown table 'manufacturing_db.production_summary'
+mysql> SHOW FULL TABLES
+    -> WHERE Table_type = 'VIEW';
++----------------------------+------------+
+| Tables_in_manufacturing_db | Table_type |
++----------------------------+------------+
+| production_summary         | VIEW       |
++----------------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM production_summary;
++----------+-----------------+------------------+------------------+-------------------+------------+--------------+
+| order_id | product_name    | machine_name     | planned_quantity | produced_quantity | order_date | order_status |
++----------+-----------------+------------------+------------------+-------------------+------------+--------------+
+|        1 | Metal Bracket   | CNC Machine 01   |              100 |                80 | 2026-10-01 | In Progress  |
+|        2 | Aluminium Panel | Lathe Machine 01 |               50 |                50 | 2026-10-02 | Completed    |
+|        3 | Plastic Cover   | CNC Machine 01   |              200 |               150 | 2026-10-03 | In Progress  |
++----------+-----------------+------------------+------------------+-------------------+------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE OR REPLACE VIEW production_summary AS
+    -> SELECT
+    ->     po.order_id,
+    ->     p.product_name,
+    ->     m.machine_name,
+    ->     po.planned_quantity,
+    ->     po.produced_quantity,
+    ->     po.order_date,
+    ->     po.order_status
+    -> FROM Production_Orders po
+    -> INNER JOIN Products p
+    ->     ON po.product_id = p.product_id
+    -> INNER JOIN Machines m
+    ->     ON po.machine_id = m.machine_id;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT * FROM production_summary;
++----------+-----------------+------------------+------------------+-------------------+------------+--------------+
+| order_id | product_name    | machine_name     | planned_quantity | produced_quantity | order_date | order_status |
++----------+-----------------+------------------+------------------+-------------------+------------+--------------+
+|        1 | Metal Bracket   | CNC Machine 01   |              100 |                80 | 2026-10-01 | In Progress  |
+|        2 | Aluminium Panel | Lathe Machine 01 |               50 |                50 | 2026-10-02 | Completed    |
+|        3 | Plastic Cover   | CNC Machine 01   |              200 |               150 | 2026-10-03 | In Progress  |
++----------+-----------------+------------------+------------------+-------------------+------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> DELIMITER //
+mysql>
+mysql> CREATE PROCEDURE Get_Production_Orders()
+    -> BEGIN
+    ->     SELECT
+    ->         order_id,
+    ->         planned_quantity,
+    ->         produced_quantity,
+    ->         order_date,
+    ->         order_status
+    ->     FROM Production_Orders;
+    -> END //
+ERROR 1304 (42000): PROCEDURE Get_Production_Orders already exists
+mysql>
+mysql> DELIMITER ;
+mysql> CALL Get_Production_Orders();
+ERROR 1054 (42S22): Unknown column 'po.status' in 'field list'
+mysql> SHOW CREATE PROCEDURE Get_Production_Orders;
++-----------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+--------------------+
+| Procedure             | sql_mode                                                                                                              | Create Procedure                                                                                                                                                                                                                                                                                                                                                                                                           | character_set_client | collation_connection | Database Collation |
++-----------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+--------------------+
+| Get_Production_Orders | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | CREATE DEFINER=`root`@`localhost` PROCEDURE `Get_Production_Orders`()
+BEGIN
+    SELECT
+        po.order_id,
+        p.product_name,
+        m.machine_name,
+        po.planned_quantity,
+        po.produced_quantity,
+        po.status,
+        po.order_date
+    FROM Production_Orders po
+    JOIN Products p
+        ON po.product_id = p.product_id
+    JOIN Machines m
+        ON po.machine_id = m.machine_id;
+END | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++-----------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+--------------------+
+1 row in set (0.00 sec)
+
+mysql> DROP PROCEDURE Get_Production_Orders;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DELIMITER //
+mysql>
+mysql> CREATE PROCEDURE Get_Production_Orders()
+    -> BEGIN
+    ->     SELECT
+    ->         po.order_id,
+    ->         p.product_name,
+    ->         m.machine_name,
+    ->         po.planned_quantity,
+    ->         po.produced_quantity,
+    ->         po.order_status,
+    ->         po.order_date
+    ->     FROM Production_Orders po
+    ->     JOIN Products p
+    ->         ON po.product_id = p.product_id
+    ->     JOIN Machines m
+    ->         ON po.machine_id = m.machine_id;
+    -> END //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql> CALL Get_Production_Orders();
++----------+-----------------+------------------+------------------+-------------------+--------------+------------+
+| order_id | product_name    | machine_name     | planned_quantity | produced_quantity | order_status | order_date |
++----------+-----------------+------------------+------------------+-------------------+--------------+------------+
+|        1 | Metal Bracket   | CNC Machine 01   |              100 |                80 | In Progress  | 2026-10-01 |
+|        2 | Aluminium Panel | Lathe Machine 01 |               50 |                50 | Completed    | 2026-10-02 |
+|        3 | Plastic Cover   | CNC Machine 01   |              200 |               150 | In Progress  | 2026-10-03 |
++----------+-----------------+------------------+------------------+-------------------+--------------+------------+
+3 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT material_id, material_name, stock_quantity
+    -> FROM Materials;
++-------------+------------------+----------------+
+| material_id | material_name    | stock_quantity |
++-------------+------------------+----------------+
+|           1 | Steel            |        1000.00 |
+|           2 | Aluminium        |         500.00 |
+|           3 | Plastic Granules |         300.00 |
++-------------+------------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> DELIMITER //
+mysql>
+mysql> CREATE TRIGGER trg_check_material_stock
+    -> BEFORE UPDATE ON Materials
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     IF NEW.stock_quantity < 0 THEN
+    ->         SIGNAL SQLSTATE '45000'
+    ->         SET MESSAGE_TEXT = 'Stock quantity cannot be negative';
+    ->     END IF;
+    -> END //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql> SHOW TRIGGERS
+    -> WHERE `Table` = 'Materials';
++-----------------------------+--------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger                     | Event  | Table     | Statement                                                                                                                                                | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++-----------------------------+--------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| trg_validate_material_stock | UPDATE | materials | BEGIN
+    IF NEW.stock_quantity < 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Stock quantity cannot be negative';
+    END IF;
+END | BEFORE | 2026-10-15 12:55:29.13 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| trg_check_material_stock    | UPDATE | materials | BEGIN
+    IF NEW.stock_quantity < 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Stock quantity cannot be negative';
+    END IF;
+END | BEFORE | 2026-10-21 21:57:52.01 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | cp850                | cp850_general_ci     | utf8mb4_0900_ai_ci |
++-----------------------------+--------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> DROP TRIGGER trg_check_material_stock;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SHOW TRIGGERS
+    -> WHERE `Table` = 'Materials';
++-----------------------------+--------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger                     | Event  | Table     | Statement                                                                                                                                                | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++-----------------------------+--------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| trg_validate_material_stock | UPDATE | materials | BEGIN
+    IF NEW.stock_quantity < 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Stock quantity cannot be negative';
+    END IF;
+END | BEFORE | 2026-10-15 12:55:29.13 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++-----------------------------+--------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW TRIGGERS
+    -> WHERE `Trigger` = 'trg_validate_material_insert';
+Empty set (0.00 sec)
+
+mysql> DELIMITER //
+mysql>
+mysql> CREATE TRIGGER trg_validate_material_insert
+    -> BEFORE INSERT ON Materials
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     IF NEW.stock_quantity < 0 THEN
+    ->         SIGNAL SQLSTATE '45000'
+    ->         SET MESSAGE_TEXT = 'Stock quantity cannot be negative';
+    ->     END IF;
+    -> END //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql> SHOW TRIGGERS
+    -> WHERE `Table` = 'Materials';
++------------------------------+--------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger                      | Event  | Table     | Statement                                                                                                                                                | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++------------------------------+--------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| trg_validate_material_insert | INSERT | materials | BEGIN
+    IF NEW.stock_quantity < 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Stock quantity cannot be negative';
+    END IF;
+END | BEFORE | 2026-10-21 22:02:33.75 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | cp850                | cp850_general_ci     | utf8mb4_0900_ai_ci |
+| trg_validate_material_stock  | UPDATE | materials | BEGIN
+    IF NEW.stock_quantity < 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Stock quantity cannot be negative';
+    END IF;
+END | BEFORE | 2026-10-15 12:55:29.13 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++------------------------------+--------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> SHOW CREATE TRIGGER trg_validate_material_stock;
++-----------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+--------------------+------------------------+
+| Trigger                     | sql_mode                                                                                                              | SQL Original Statement                                                                                                                                                                                                                                                     | character_set_client | collation_connection | Database Collation | Created                |
++-----------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+--------------------+------------------------+
+| trg_validate_material_stock | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | CREATE DEFINER=`root`@`localhost` TRIGGER `trg_validate_material_stock` BEFORE UPDATE ON `materials` FOR EACH ROW BEGIN
+    IF NEW.stock_quantity < 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Stock quantity cannot be negative';
+    END IF;
+END | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci | 2026-10-15 12:55:29.13 |
++-----------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+--------------------+------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT material_id, material_name, stock_quantity
+    -> FROM Materials;
++-------------+------------------+----------------+
+| material_id | material_name    | stock_quantity |
++-------------+------------------+----------------+
+|           1 | Steel            |        1000.00 |
+|           2 | Aluminium        |         500.00 |
+|           3 | Plastic Granules |         300.00 |
++-------------+------------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> SHOW TABLES LIKE 'Production_Order_Log';
+Empty set (0.00 sec)
+
+mysql> CREATE TABLE Production_Order_Log (
+    ->     log_id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     order_id INT NOT NULL,
+    ->     action_message VARCHAR(100),
+    ->     action_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> SHOW TRIGGERS
+    -> WHERE `Trigger` = 'trg_after_production_order_insert';
+Empty set (0.00 sec)
+
+mysql> DELIMITER //
+mysql>
+mysql> CREATE TRIGGER trg_after_production_order_insert
+    -> AFTER INSERT ON Production_Orders
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     INSERT INTO Production_Order_Log
+    ->         (order_id, action_message)
+    ->     VALUES
+    ->         (NEW.order_id, 'New production order created');
+    -> END //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql> SHOW TRIGGERS
+    -> WHERE `Table` = 'Production_Orders';
++-----------------------------------+--------+-------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger                           | Event  | Table             | Statement                                                                                                                                            | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++-----------------------------------+--------+-------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| trg_after_production_order_insert | INSERT | production_orders | BEGIN
+    INSERT INTO Production_Order_Log
+        (order_id, action_message)
+    VALUES
+        (NEW.order_id, 'New production order created');
+END | AFTER  | 2026-10-21 22:06:12.60 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | cp850                | cp850_general_ci     | utf8mb4_0900_ai_ci |
++-----------------------------------+--------+-------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM Production_Order_Log;
+Empty set (0.00 sec)
+
+mysql> SHOW CREATE TRIGGER trg_after_production_order_insert;
++-----------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+--------------------+------------------------+
+| Trigger                           | sql_mode                                                                                                              | SQL Original Statement                                                                                                                                                                                                                                                              | character_set_client | collation_connection | Database Collation | Created                |
++-----------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+--------------------+------------------------+
+| trg_after_production_order_insert | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | CREATE DEFINER=`root`@`localhost` TRIGGER `trg_after_production_order_insert` AFTER INSERT ON `production_orders` FOR EACH ROW BEGIN
+    INSERT INTO Production_Order_Log
+        (order_id, action_message)
+    VALUES
+        (NEW.order_id, 'New production order created');
+END | cp850                | cp850_general_ci     | utf8mb4_0900_ai_ci | 2026-10-21 22:06:12.60 |
++-----------------------------------+-----------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+--------------------+------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(*) AS total_orders
+    -> FROM Production_Orders;
++--------------+
+| total_orders |
++--------------+
+|            3 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT
+    ->     p.product_name,
+    ->     SUM(po.planned_quantity) AS total_planned,
+    ->     SUM(po.produced_quantity) AS total_produced,
+    ->     ROUND(
+    ->         SUM(po.produced_quantity) * 100.0 /
+    ->         NULLIF(SUM(po.planned_quantity), 0),
+    ->         2
+    ->     ) AS efficiency_percentage
+    -> FROM Production_Orders po
+    -> INNER JOIN Products p
+    ->     ON po.product_id = p.product_id
+    -> GROUP BY p.product_name;
++-----------------+---------------+----------------+-----------------------+
+| product_name    | total_planned | total_produced | efficiency_percentage |
++-----------------+---------------+----------------+-----------------------+
+| Metal Bracket   |           100 |             80 |                 80.00 |
+| Aluminium Panel |            50 |             50 |                100.00 |
+| Plastic Cover   |           200 |            150 |                 75.00 |
++-----------------+---------------+----------------+-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> SHOW PROCEDURE STATUS
+    -> WHERE Db = 'manufacturing_db'
+    ->   AND Name = 'Get_Order_By_ID';
+Empty set (0.00 sec)
+
+mysql> DELIMITER //
+mysql>
+mysql> CREATE PROCEDURE Get_Order_By_ID(IN p_order_id INT)
+    -> BEGIN
+    ->     SELECT
+    ->         po.order_id,
+    ->         p.product_name,
+    ->         m.machine_name,
+    ->         po.planned_quantity,
+    ->         po.produced_quantity,
+    ->         po.order_status
+    ->     FROM Production_Orders po
+    ->     INNER JOIN Products p
+    ->         ON po.product_id = p.product_id
+    ->     INNER JOIN Machines m
+    ->         ON po.machine_id = m.machine_id
+    ->     WHERE po.order_id = p_order_id;
+    -> END //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql> CALL Get_Order_By_ID(1);
++----------+---------------+----------------+------------------+-------------------+--------------+
+| order_id | product_name  | machine_name   | planned_quantity | produced_quantity | order_status |
++----------+---------------+----------------+------------------+-------------------+--------------+
+|        1 | Metal Bracket | CNC Machine 01 |              100 |                80 | In Progress  |
++----------+---------------+----------------+------------------+-------------------+--------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> CALL Get_Order_By_ID(2);
++----------+-----------------+------------------+------------------+-------------------+--------------+
+| order_id | product_name    | machine_name     | planned_quantity | produced_quantity | order_status |
++----------+-----------------+------------------+------------------+-------------------+--------------+
+|        2 | Aluminium Panel | Lathe Machine 01 |               50 |                50 | Completed    |
++----------+-----------------+------------------+------------------+-------------------+--------------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SHOW TRIGGERS FROM manufacturing_db;
++-----------------------------------+--------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger                           | Event  | Table             | Statement                                                                                                                                                | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++-----------------------------------+--------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| trg_validate_material_insert      | INSERT | materials         | BEGIN
+    IF NEW.stock_quantity < 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Stock quantity cannot be negative';
+    END IF;
+END | BEFORE | 2026-10-21 22:02:33.75 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | cp850                | cp850_general_ci     | utf8mb4_0900_ai_ci |
+| trg_validate_material_stock       | UPDATE | materials         | BEGIN
+    IF NEW.stock_quantity < 0 THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Stock quantity cannot be negative';
+    END IF;
+END | BEFORE | 2026-10-15 12:55:29.13 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| trg_after_production_order_insert | INSERT | production_orders | BEGIN
+    INSERT INTO Production_Order_Log
+        (order_id, action_message)
+    VALUES
+        (NEW.order_id, 'New production order created');
+END     | AFTER  | 2026-10-21 22:06:12.60 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | cp850                | cp850_general_ci     | utf8mb4_0900_ai_ci |
++-----------------------------------+--------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT material_id, material_name, stock_quantity
+    -> FROM Materials;
++-------------+------------------+----------------+
+| material_id | material_name    | stock_quantity |
++-------------+------------------+----------------+
+|           1 | Steel            |        1000.00 |
+|           2 | Aluminium        |         500.00 |
+|           3 | Plastic Granules |         300.00 |
++-------------+------------------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> SHOW TABLES LIKE 'Material_Stock_Log';
+Empty set (0.00 sec)
+
+mysql> CREATE TABLE Material_Stock_Log (
+    ->     log_id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     material_id INT NOT NULL,
+    ->     old_stock DECIMAL(10,2),
+    ->     new_stock DECIMAL(10,2),
+    ->     changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+mysql> SHOW TRIGGERS FROM manufacturing_db
+    -> WHERE `Trigger` = 'trg_material_stock_audit';
+Empty set (0.00 sec)
+
+mysql> DELIMITER //
+mysql>
+mysql> CREATE TRIGGER trg_material_stock_audit
+    -> AFTER UPDATE ON Materials
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     IF OLD.stock_quantity <> NEW.stock_quantity THEN
+    ->         INSERT INTO Material_Stock_Log
+    ->             (material_id, old_stock, new_stock)
+    ->         VALUES
+    ->             (OLD.material_id, OLD.stock_quantity, NEW.stock_quantity);
+    ->     END IF;
+    -> END //
+Query OK, 0 rows affected (0.02 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql> SHOW TRIGGERS FROM manufacturing_db
+    -> WHERE `Trigger` = 'trg_material_stock_audit';
++--------------------------+--------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger                  | Event  | Table     | Statement                                                                                                                                                                                                                                               | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++--------------------------+--------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| trg_material_stock_audit | UPDATE | materials | BEGIN
+    IF OLD.stock_quantity <> NEW.stock_quantity THEN
+        INSERT INTO Material_Stock_Log
+            (material_id, old_stock, new_stock)
+        VALUES
+            (OLD.material_id, OLD.stock_quantity, NEW.stock_quantity);
+    END IF;
+END | AFTER  | 2026-10-21 22:16:54.10 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | cp850                | cp850_general_ci     | utf8mb4_0900_ai_ci |
++--------------------------+--------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT
+    ->     material_id,
+    ->     material_name,
+    ->     stock_quantity,
+    ->     unit_cost,
+    ->     ROUND(stock_quantity * unit_cost, 2) AS total_stock_value
+    -> FROM Materials;
++-------------+------------------+----------------+-----------+-------------------+
+| material_id | material_name    | stock_quantity | unit_cost | total_stock_value |
++-------------+------------------+----------------+-----------+-------------------+
+|           1 | Steel            |        1000.00 |     80.00 |          80000.00 |
+|           2 | Aluminium        |         500.00 |    200.00 |         100000.00 |
+|           3 | Plastic Granules |         300.00 |     60.00 |          18000.00 |
++-------------+------------------+----------------+-----------+-------------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT
+    ->     ROUND(SUM(stock_quantity * unit_cost), 2)
+    ->         AS total_inventory_value
+    -> FROM Materials;
++-----------------------+
+| total_inventory_value |
++-----------------------+
+|             198000.00 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> USE manufacturing_db;
+Database changed
+mysql>
+mysql> SELECT
+    ->     po.order_id,
+    ->     p.product_name,
+    ->     m.machine_name,
+    ->     po.planned_quantity,
+    ->     po.produced_quantity,
+    ->     (po.planned_quantity - po.produced_quantity) AS pending_quantity,
+    ->     ROUND(
+    ->         po.produced_quantity * 100.0 /
+    ->         NULLIF(po.planned_quantity, 0),
+    ->         2
+    ->     ) AS production_efficiency,
+    ->     po.order_date,
+    ->     po.order_status
+    -> FROM Production_Orders po
+    -> INNER JOIN Products p
+    ->     ON po.product_id = p.product_id
+    -> INNER JOIN Machines m
+    ->     ON po.machine_id = m.machine_id
+    -> ORDER BY po.order_id;
++----------+-----------------+------------------+------------------+-------------------+------------------+-----------------------+------------+--------------+
+| order_id | product_name    | machine_name     | planned_quantity | produced_quantity | pending_quantity | production_efficiency | order_date | order_status |
++----------+-----------------+------------------+------------------+-------------------+------------------+-----------------------+------------+--------------+
+|        1 | Metal Bracket   | CNC Machine 01   |              100 |                80 |               20 |                 80.00 | 2026-10-01 | In Progress  |
+|        2 | Aluminium Panel | Lathe Machine 01 |               50 |                50 |                0 |                100.00 | 2026-10-02 | Completed    |
+|        3 | Plastic Cover   | CNC Machine 01   |              200 |               150 |               50 |                 75.00 | 2026-10-03 | In Progress  |
++----------+-----------------+------------------+------------------+-------------------+------------------+-----------------------+------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql>
